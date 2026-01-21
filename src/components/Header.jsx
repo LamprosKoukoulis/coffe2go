@@ -14,6 +14,7 @@ export default function Header() {
     user: [{label: "View", view:"dashboard"},
            {label: "Sightseeings", view:"sightseeings"},
            {label: "Order Coffee", view:"dashboard"},
+           {label: "Cart", view:"cart"},
     ],
     driver: [
       {label:"Navigation", view:"navigation"},

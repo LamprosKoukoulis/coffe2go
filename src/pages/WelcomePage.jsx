@@ -1,8 +1,9 @@
 import { Box, Typography, Paper } from "@mui/material";
 import WelcomeActions from "../components/WelcomeActions";
-
+import {useView} from "../components/ViewContext"
 
 export default function WelcomePage() {
+  const {isLogedIn}=useView();
   return (
     <Box
       sx={{  
@@ -31,8 +32,7 @@ export default function WelcomePage() {
         <Typography variant="body1" color="text.secondary" mb={3}>
           Order your coffee during the ride
         </Typography>
-
-        <WelcomeActions />
+        {!isLogedIn ?<WelcomeActions />:<Box sx={{color: "rgb(255, 0, 0)"}}>Navigate Through The Navigation Bar at the Top!</Box>}
       </Paper>
     </Box>
   );

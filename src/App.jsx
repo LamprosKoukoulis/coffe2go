@@ -5,6 +5,8 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import UserDashboard from "./pages/UserDashboard";
 import DriverDashboard from "./pages/DriverDashBoard"
+import Footer from "./components/Footer"
+import Cart from "./pages/Cart"
 // import UserDashboard from "./pages/UserDashboard";
 // import DriverDashboard from "./pages/DriverDashBoard"
 import { useView, ViewProvider } from "./components/ViewContext";
@@ -45,7 +47,7 @@ function AppContent(){
                   );
                   default:
                     return(
-                      <WelcomePage />
+                      <WelcomePage isLogedIn/>
                   );
                 }
               }else{
@@ -58,10 +60,14 @@ function AppContent(){
               <CoffeeOrder />
             )
           }
+        case "cart":
+          return(
+            <Cart />
+          )
         case "welcomePage":
           default:
             return(
-                <WelcomePage />
+                <WelcomePage isLogedIn/>
             )
           
     }
@@ -72,6 +78,7 @@ function AppContent(){
         <Container backgroundImage={bgImage}>
           {renderContent()}
         </Container>
+      <Footer />
     </Box>
   );
 }
