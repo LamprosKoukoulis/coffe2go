@@ -7,8 +7,9 @@ export const ViewProvider = ({children}) =>{
     const [role,setRole] =useState("guest");
     const [view, setView]=useState("welcomePage");
     const [isLogedIn, setIsLogedIn] = useState(false);
+    const [stop,setStop]= useState(null);
     return(
-        <ViewContext.Provider value={{ view, setView, role, setRole,isLogedIn,setIsLogedIn}}>
+        <ViewContext.Provider value={{ view, setView, role, setRole,isLogedIn,setIsLogedIn,stop,setStop}}>
             {children}
         </ViewContext.Provider>
     )

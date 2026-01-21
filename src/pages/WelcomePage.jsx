@@ -6,10 +6,12 @@ export default function WelcomePage() {
   return (
     <Box
       sx={{  
-        minHeight:"100vh",
+        // minHeight:"100vh",
         display:"flex",
         justifyContent:"center",
-        alignItems:"center"
+        alignItems:"center",
+        position: "relative",
+        m:2,
       }}
     >
       <Paper
@@ -18,8 +20,8 @@ export default function WelcomePage() {
           p: 4,
           width: 360,
           textAlign: "center",
-          borderRadius: 3,
-          opacity: "85%"
+          borderRadius: 7,
+          backgroundColor: "rgba(255,255,255,0.85)",
         }}
       >
         <Typography variant="h4" gutterBottom>

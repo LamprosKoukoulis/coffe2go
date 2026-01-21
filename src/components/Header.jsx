@@ -5,27 +5,25 @@ import {
   Button,
   Box,
 } from "@mui/material";
-import React from "react";
-import Container from "../components/Container"
 import { useView } from "./ViewContext";
 
 
 export default function Header() {
   const menus = {
     guest: [],
-    user: ["View", 
-      "Sightseeings", 
-      "Order Coffee"
+    user: [{label: "View", view:"dashboard"},
+           {label: "Sightseeings", view:"sightseeings"},
+           {label: "Order Coffee", view:"dashboard"},
     ],
     driver: [
-      "Navigation",
-      "Control Temp",
-      "Bus Roof & Solar",
-      "Robot Vacuum",
+      {label:"Navigation", view:"navigation"},
+      {label:"Control Temp", view:"temperature"},
+      {label:"Bus Roof & Solar", view:"solar"},
+      {label:"Robot Vacuum", view:"robot"},
     ],
   };
   
-  const {setRole,role ,setView} = useView();
+  const {setRole,role ,setView,setIsLogedIn} = useView();
   const links = menus[role] || menus.guest;
 
   return (
@@ -44,13 +42,14 @@ export default function Header() {
 
         <Box sx ={{flexGrow: 1}}/>        {/* This pushes everything to the right */}
         <Box>
-          {links.map((link) => (
+          {links.map(({label, view}) => (
             <Button
-            key={link}
+            key={label}
             color="inherit"
             sx={{ textTransform: "none" }}
+            onClick={() => setView(view)}
             >
-              {link}
+              {label}
             </Button>
           ))}
           {role === "guest" && (
@@ -68,8 +67,9 @@ export default function Header() {
             variant ="outlined"
             color = "inherit"
             onClick={() =>{
-              setView("welcomePage");
               setRole("guest");
+              setIsLogedIn(false);
+              setView("welcomePage");
             }}
             >
               Sign Out

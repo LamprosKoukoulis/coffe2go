@@ -3,9 +3,14 @@ import WelcomePage from "./pages/WelcomePage";
 import Header from "./components/Header"
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import UserDashboard from "./pages/UserDashboard";
+import DriverDashboard from "./pages/DriverDashBoard"
 // import UserDashboard from "./pages/UserDashboard";
 // import DriverDashboard from "./pages/DriverDashBoard"
 import { useView, ViewProvider } from "./components/ViewContext";
+import { Box } from "@mui/material";
+import CoffeeOrder from "./components/CoffeeOrder";
+
 
 
 
@@ -17,7 +22,8 @@ function App() {
   );
 }
 function AppContent(){
-  const {view, role, isLogedIn} = useView();
+  const {view, role, isLogedIn, stop} = useView();
+  const bgImage = (view === "welcomePage" || !view) ? "/img/background.png" : null;
   console.log("App is trying to render view: ", view) 
   const renderContent = () => {
     switch (view) {
@@ -31,42 +37,42 @@ function AppContent(){
             switch(role){
               case "user":
                 return (  
-                  <Container /*backgroundImage="/img/background.png"*/>
                     <UserDashboard />
-                  </Container>  
                   );
                   case "driver":
                     return(
-                      <Container /*backgroundImage="/img/background.png"*/>
                       <DriverDashboard />
-                  </Container>
                   );
                   default:
                     return(
-                      <Container backgroundImage="/img/background.png">
                       <WelcomePage />
-                  </Container>
                   );
                 }
               }else{
                   return <Container> Unathorized Role</Container>;
                 // return < Dashboard />
               }
+        case "openShop":
+          if(isLogedIn && stop){
+            return(
+              <CoffeeOrder />
+            )
+          }
         case "welcomePage":
           default:
             return(
-              <Container backgroundImage="/img/background.png">
-                <WelcomePage />;
-              </Container>
+                <WelcomePage />
             )
           
     }
   };
   return(
-    <>
+    <Box sx={{display:"flex", flexDirection:"column", minHeight:"100vh"}}>
       <Header />
-        {renderContent()}
-    </>
+        <Container backgroundImage={bgImage}>
+          {renderContent()}
+        </Container>
+    </Box>
   );
 }
 

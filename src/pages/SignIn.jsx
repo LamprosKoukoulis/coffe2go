@@ -37,24 +37,24 @@ const Card = styled(MuiCard)(({ theme }) => ({
   }),
 }));
 
-const SignInContainer = styled(Stack)(({ theme }) => ({
-  minHeight: '100vh',
-  padding: theme.spacing(2),
-  [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(4),
-  },
-  position: 'relative',
-  '&::before': {
-    content: '""',
-    display: 'block',
-    position: 'absolute',
-    zIndex: -1,
-    inset: 0,
-    backgroundImage:
-      'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
-    backgroundRepeat: 'no-repeat',
-  },
-}));
+// const SignInContainer = styled(Stack)(({ theme }) => ({
+//   minHeight: '100vh',
+//   padding: theme.spacing(2),
+//   [theme.breakpoints.up('sm')]: {
+//     padding: theme.spacing(4),
+//   },
+//   position: 'relative',
+//   '&::before': {
+//     content: '""',
+//     display: 'block',
+//     position: 'absolute',
+//     zIndex: -1,
+//     inset: 0,
+//     backgroundImage:
+//       'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
+//     backgroundRepeat: 'no-repeat',
+//   },
+// }));
 
 
 export default function SignIn() {
@@ -64,7 +64,7 @@ export default function SignIn() {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
-  const {setView,setRole,role,setisLogedIn} =useView();
+  const {setView,setRole,role,setIsLogedIn} =useView();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -80,8 +80,8 @@ export default function SignIn() {
       return;
     }
     
-    if(isValid){
-      setisLogedIn(true);
+    if(validateInputs()){
+      setIsLogedIn(true);
       if (email.value.toLowerCase().includes("driver")){
         console.log("is Driver");
         setRole("driver");
@@ -89,9 +89,9 @@ export default function SignIn() {
         setRole("user");
       }
     }else{
-      setisLogedIn(false);
+      setIsLogedIn(false);
     }
-
+    
     // const data = new FormData(event.currentTarget);
     // console.log({
     //   email: data.get('email'),
@@ -130,9 +130,7 @@ export default function SignIn() {
   };
 
   return (
-    <>
-      <CssBaseline enableColorScheme />
-      <Container>
+      <CssBaseline enableColorScheme>
         <ColorModeSelect sx={{ position: 'fixed', right: '1rem' }} />
         <Card variant="outlined">
           <SitemarkIcon />
@@ -197,7 +195,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              onClick={validateInputs}
+              // onClick={validateInputs}
             >
               Sign in
             </Button>
@@ -241,7 +239,6 @@ export default function SignIn() {
             </Typography>
           </Box>
         </Card>
-      </Container>
-    </>
+      </CssBaseline>
   );
 }

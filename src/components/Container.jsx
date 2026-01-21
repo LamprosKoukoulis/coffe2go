@@ -1,24 +1,26 @@
 import { Box } from "@mui/material";
 
 export default function PageCenter({children, backgroundImage= null }) {
-  return (
-    <Box
-      sx={{
-        width: "100%",
-        minHeight: "calc(100vh - 64px)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        m: 0,
 
-        ...(backgroundImage &&{
+  return (
+      <Box
+      sx={{
+        flex:1,
+        width: "100%",
+        display: "flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        alignItems: "center",
+        ...( backgroundImage &&{
+
           backgroundImage :`url(${backgroundImage})`,
+          height:"100vh",
           backgroundSize: "cover",
           backgroundPosition : "center",
           backgroundRepeat: "no-repeat",
-        }),
+        }),       
       }}
-    >
+      >
       {children}
     </Box>
   );

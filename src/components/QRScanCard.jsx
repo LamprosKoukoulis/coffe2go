@@ -47,7 +47,7 @@ export default function QRScanCard({ onScan }) {
       </Typography>
 
       <Button variant="contained" onClick={mockScan}>
-        Scan QR (Demo)
+        Scan QR
       </Button>
     </Paper>
   );
