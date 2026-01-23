@@ -14,7 +14,7 @@ import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import ForgotPassword from '../components/ForgotPassword';
-import ColorModeSelect from '../theme/ColorModeContent';
+import ColorModeSelect from '../theme/ColorModeContext';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from '../components/CustomIcons';
 import { useView } from '../components/ViewContext';
 import Container from "../components/Container"
@@ -64,7 +64,7 @@ export default function SignIn() {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [open, setOpen] = React.useState(false);
 
-  const {setView,setRole,role,setIsLogedIn} =useView();
+  const {setView,setRole,setIsLogedIn} =useView();
 
   const handleClickOpen = () => {
     setOpen(true);

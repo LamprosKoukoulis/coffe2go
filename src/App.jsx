@@ -55,7 +55,7 @@ function AppContent(){
                 // return < Dashboard />
               }
         case "openShop":
-          if(isLogedIn && stop){
+          if(isLogedIn){
             return(
               <CoffeeOrder />
             )

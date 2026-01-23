@@ -8,7 +8,7 @@ export default function UserDashboard() {
 
   return (
     <Box sx={{ width: "100%", maxWidth: 600 }}>
-      <Typography variant="h5" mb={3} sx={{textAlign: "center"}}>
+      <Typography variant="h5" marginBottom={3} sx={{textAlign: "center"}}>
         User Dashboard
       </Typography>
 

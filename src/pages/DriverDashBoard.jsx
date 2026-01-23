@@ -1,26 +1,47 @@
-import { Box, Typography } from "@mui/material";
-import { useState } from "react";
-import QRScanCard from "../components/QRScanCard";
-import RouteInfo from "../components/RouteInfo";
-import CoffeeOrder from "../components/CoffeeOrder";
+import { useEffect,useState } from "react";
+import DrivingAssist from "./DrivingAssist";
+import ClimateControl from "./ClimateContol";
+import EnergyPanel from "./EnergyPanel";
+import TiredAlert from "./TiredAlert";
+import {Box,Typography} from "@mui/material";
 
-export default function UserDashboard() {
-  const [route, setRoute] = useState(null);
+export default function DriverDashBoard() {
+  const [showAlert,setShowAlert] = useState(null);
 
+  useEffect(() =>{
+    window.triggerTiredAlert =() =>{
+      setShowAlert(true);
+    };
+  },[]);
   return (
-    <Box sx={{ width: "100%", maxWidth: 600 }}>
+      <>
       <Typography variant="h5" mb={3}>
-        User Dashboard
+        Driver Dashboard
       </Typography>
+        <Box style={styles.dashboard} sx={{ width: "95%"}}>
 
-      {!route ? (
-        <QRScanCard onScan={setRoute} />
-      ) : (
-        <>
-          <RouteInfo route={route} />
-          <CoffeeOrder eta={route.etaWindow} />
-        </>
+      <DrivingAssist />
+      <ClimateControl />
+      <EnergyPanel />
+
+      {showAlert &&(
+        <TiredAlert onClose={()=> setShowAlert(false)} />
       )}
     </Box>
+</>
   );
 }
+
+  const styles = {
+  dashboard: {
+    flex:1,
+    height: "80vh",
+    padding: 24,
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gridTemplateRows: "auto 1fr 1fr",
+    gap: 16,
+    background: "background.default",
+    color:"text.primary",
+  },
+};

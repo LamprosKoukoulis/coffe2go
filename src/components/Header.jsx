@@ -6,6 +6,7 @@ import {
   Box,
 } from "@mui/material";
 import { useView } from "./ViewContext";
+import ColorModeSelect from "../theme/ColorModeSelect";
 
 
 export default function Header() {
@@ -17,7 +18,7 @@ export default function Header() {
            {label: "Cart", view:"cart"},
     ],
     driver: [
-      {label:"Navigation", view:"navigation"},
+      {label:"Navigation", view:"dashboard"},
       {label:"Control Temp", view:"temperature"},
       {label:"Bus Roof & Solar", view:"solar"},
       {label:"Robot Vacuum", view:"robot"},
@@ -76,6 +77,7 @@ export default function Header() {
               Sign Out
             </Button>
           )}
+        <ColorModeSelect />
         </Box>
       </Toolbar>
     </AppBar>
