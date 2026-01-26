@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 public/videos/route-view.mp4
 src/src.zip
-src/src/src/assets/*
+src/src/*
