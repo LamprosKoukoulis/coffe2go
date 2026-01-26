@@ -7,13 +7,15 @@ import UserDashboard from "./pages/UserDashboard";
 import DriverDashboard from "./pages/DriverDashBoard"
 import Footer from "./components/Footer"
 import Cart from "./pages/Cart"
+import Robot from "./pages/Robot"
 // import UserDashboard from "./pages/UserDashboard";
 // import DriverDashboard from "./pages/DriverDashBoard"
 import { useView, ViewProvider } from "./components/ViewContext";
 import { Box } from "@mui/material";
 import CoffeeOrder from "./components/CoffeeOrder";
-
-
+import View from "./pages/view";
+import ClimateControl from "./pages/ClimateContol";
+import EnergyPanel from "./pages/EnergyPanel";
 
 
 function App() {
@@ -41,19 +43,23 @@ function AppContent(){
                 return (  
                     <UserDashboard />
                   );
-                  case "driver":
-                    return(
-                      <DriverDashboard />
-                  );
-                  default:
-                    return(
-                      <WelcomePage isLogedIn/>
-                  );
-                }
-              }else{
-                  return <Container> Unathorized Role</Container>;
-                // return < Dashboard />
-              }
+              case "driver":
+                return(
+                  <DriverDashboard />
+              );
+              default:
+                return(
+                  <WelcomePage isLogedIn/>
+              );
+            }
+          }else{
+              return <Container> Unathorized Role</Container>;
+            // return < Dashboard />
+          }
+        case "view":
+          return(
+            <View />
+          )
         case "openShop":
           if(isLogedIn){
             return(
@@ -61,8 +67,22 @@ function AppContent(){
             )
           }
         case "cart":
-          return(
+          if(role!="driver" & !isLogedIn)
+            return <Container> Unathorized Role</Container>;
+            return(
             <Cart />
+          )
+        case "ac":
+          return(
+            <ClimateControl />
+          )
+        case "solar":
+          return(
+            <EnergyPanel />
+          )
+        case "robot":
+          return(
+            <Robot />
           )
         case "welcomePage":
           default:

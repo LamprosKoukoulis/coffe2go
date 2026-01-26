@@ -12,14 +12,14 @@ import ColorModeSelect from "../theme/ColorModeSelect";
 export default function Header() {
   const menus = {
     guest: [],
-    user: [{label: "View", view:"dashboard"},
+    user: [{label: "View", view:"view"},
            {label: "Sightseeings", view:"sightseeings"},
            {label: "Order Coffee", view:"dashboard"},
            {label: "Cart", view:"cart"},
     ],
     driver: [
       {label:"Navigation", view:"dashboard"},
-      {label:"Control Temp", view:"temperature"},
+      {label:"Control Temp", view:"ac"},
       {label:"Bus Roof & Solar", view:"solar"},
       {label:"Robot Vacuum", view:"robot"},
     ],

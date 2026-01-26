@@ -3,7 +3,7 @@ import {Link, Typography } from "@mui/material";
 export default function Footer(){
     const devs=[
         {id:"Lampros Koukoulis P18081",link:"https://github.com/LamprosKoukoulis"},
-        {id:"Nikolaos Maurilas P", link:"test"},
+        {id:"Nikolaos Maurilas P22099", link:"null"},
     ];
     return(
         <footer>

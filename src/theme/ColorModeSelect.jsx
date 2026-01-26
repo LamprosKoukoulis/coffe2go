@@ -10,7 +10,7 @@ export default function ColorModeSelect(props) {
   const colorMode = useContext(ColorModeContext);
 
   return (
-    <IconButton onClick={colorMode.toggleColorMode} {...props}>
+    <IconButton onClick={colorMode.toggleColorMode} color="inherit">
       {theme.palette.mode === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
     </IconButton>
   );

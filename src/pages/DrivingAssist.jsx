@@ -1,4 +1,6 @@
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import InfoIcon from '@mui/icons-material/Info';
+import DriverCard from '../components/DriverCard';
 export default function DrivingAssist() {
   const data = {
     speed: 78,
@@ -9,9 +11,12 @@ export default function DrivingAssist() {
   };
 
   return (
-    <section style={card}>
-      <h2> Πληροφορίες </h2>
-
+    <DriverCard name={
+      <>
+      <InfoIcon sx={{verticalAlign:"middle" ,mr:2}}/>
+      Πληροφορίες
+      </>
+      }>
       <p>Ταχύτητα: {data.speed} km/h</p>
       {data.speed > data.speedLimit && <Alert text="Υπέρβαση ορίου ταχύτητας" />}
 
@@ -19,7 +24,7 @@ export default function DrivingAssist() {
       {data.passengersLeaving && (
         <Alert text="Επιβάτες κατεβαίνουν – ΜΗΝ ξεκινήσετε" />
       )}
-    </section>
+    </DriverCard>
   );
 }
 
@@ -27,8 +32,4 @@ const Alert = ({ text }) => (
   <p style={{ color: "red", fontWeight: "bold" }}> <WarningAmberIcon style={{verticalAlign:"middle"}} /> {text}</p>
 );
 
-const card = {
-  padding: 16,
-  borderRadius: 10,
-};
 

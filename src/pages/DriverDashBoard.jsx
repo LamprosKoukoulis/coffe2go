@@ -7,6 +7,7 @@ import {Box,Typography} from "@mui/material";
 
 export default function DriverDashBoard() {
   const [showAlert,setShowAlert] = useState(null);
+  const [acMode, setAcMode] = useState("off");
 
   useEffect(() =>{
     window.triggerTiredAlert =() =>{
@@ -14,21 +15,21 @@ export default function DriverDashBoard() {
     };
   },[]);
   return (
-      <>
+    <>
       <Typography variant="h5" mb={3}>
         Driver Dashboard
       </Typography>
         <Box style={styles.dashboard} sx={{ width: "95%"}}>
 
-      <DrivingAssist />
-      <ClimateControl />
-      <EnergyPanel />
+          <DrivingAssist />
+          <ClimateControl mode={acMode} setMode={setAcMode}/>
+          <EnergyPanel mode={acMode} />
 
-      {showAlert &&(
-        <TiredAlert onClose={()=> setShowAlert(false)} />
-      )}
-    </Box>
-</>
+          {showAlert &&(
+            <TiredAlert onClose={()=> setShowAlert(false)} />
+          )}
+      </Box>
+    </>
   );
 }
 
@@ -41,7 +42,5 @@ export default function DriverDashBoard() {
     gridTemplateColumns: "1fr 1fr",
     gridTemplateRows: "auto 1fr 1fr",
     gap: 16,
-    background: "background.default",
-    color:"text.primary",
   },
 };

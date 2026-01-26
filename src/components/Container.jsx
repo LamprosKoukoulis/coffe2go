@@ -11,6 +11,7 @@ export default function PageCenter({children, backgroundImage= null }) {
         flexDirection:"column",
         justifyContent:"center",
         alignItems: "center",
+        gap:2,
         ...( backgroundImage &&{
 
           backgroundImage :`url(${backgroundImage})`,

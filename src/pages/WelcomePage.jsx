@@ -22,7 +22,7 @@ export default function WelcomePage() {
           width: 360,
           textAlign: "center",
           borderRadius: 7,
-          backgroundColor: "rgba(255,255,255,0.85)",
+          backgroundColor: "background.default",
         }}
       >
         <Typography variant="h4" gutterBottom>
@@ -32,7 +32,7 @@ export default function WelcomePage() {
         <Typography variant="body1" color="text.secondary" mb={3}>
           Order your coffee during the ride
         </Typography>
-        {!isLogedIn ?<WelcomeActions />:<Box sx={{color: "rgb(255, 0, 0)"}}>Navigate Through The Navigation Bar at the Top!</Box>}
+        {!isLogedIn ?<WelcomeActions />:<Box color= "red">Navigate Through The Navigation Bar at the Top!</Box>}
       </Paper>
     </Box>
   );
