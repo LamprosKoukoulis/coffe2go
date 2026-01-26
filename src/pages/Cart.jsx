@@ -24,7 +24,7 @@ export default function Cart() {
         Το Καλάθι μου
       </Typography>
 
-      {cart.length === 0 ? (
+      {cart.length === 0? (
         <Box sx={{ textAlign: 'center', mt: 10 }}>
           <Typography variant="h6" color="text.secondary">
             Το καλάθι σου είναι άδειο 
@@ -70,13 +70,14 @@ export default function Cart() {
               variant="contained" 
               fullWidth 
               size="large" 
+              onClick={() => setView("checkout")}
               sx={{ 
-                bgcolor: '#00c2e8', 
+                bgcolor: 'primary', 
                 py: 2, 
                 borderRadius: 3, 
                 fontWeight: 'bold',
                 fontSize: '1.1rem',
-                '&:hover': { bgcolor: '#009dbd' }
+                '&:hover': { bgcolor: '!background.default' }
               }}
             >
               Checkout

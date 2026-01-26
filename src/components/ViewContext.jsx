@@ -8,6 +8,8 @@ export const ViewProvider = ({children}) =>{
     const [view, setView]=useState("welcomePage");
     const [isLogedIn, setIsLogedIn] = useState(false);
     const [stop,setStop]= useState(null);
+    const [shop,setShop]= useState(null);
+    const [orderLocation,setOrderLocation] =useState(null);
     const [cart,setCart] =useState([]);
     const [route, setRoute] =useState(null);
 
@@ -19,7 +21,7 @@ export const ViewProvider = ({children}) =>{
     const resetAll=() =>{
         setRole("guest");
         setView("welcomePage");
-        isLogedIn(false);
+        setIsLogedIn(false);
         setStop(null);
         setCart([]);
         setRoute(null);
@@ -33,6 +35,8 @@ export const ViewProvider = ({children}) =>{
                 stop,setStop,
                 cart,setCart,addToCart,
                 route, setRoute,
+                shop,setShop,
+                orderLocation,setOrderLocation,
                 resetAll
                 }}>
             {children}

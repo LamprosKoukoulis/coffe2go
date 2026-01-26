@@ -16,7 +16,6 @@ export default function Header() {
     user: [{label: "View", view:"view"},
            {label: "Sightseeings", view:"sightseeings"},
            {label: "Order Coffee", view:"dashboard"},
-           {label: "Cart", view:"cart"},
     ],
     driver: [
       {label:"Navigation", view:"dashboard"},
@@ -26,7 +25,7 @@ export default function Header() {
     ],
   };
   
-  const {setRole,role ,setView,setIsLogedIn,resetAll} = useView();
+  const {setRole,role ,setView,isLogedIn,setIsLogedIn,resetAll} = useView();
   const links = menus[role] || menus.guest;
 
   return (
@@ -36,7 +35,7 @@ export default function Header() {
         <Button 
         variant="text"
         color= "inherit"
-        onClick={() => setView("dashboard")}
+        onClick={() => isLogedIn?setView("dashboard"):setView("welcomePage")}
         sx={{
           textTransform:"none",
         }}>

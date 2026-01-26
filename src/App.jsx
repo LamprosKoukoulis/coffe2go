@@ -17,6 +17,7 @@ import Shop from "./pages/Shop";
 import manual from "/manual/manual.svg?url";
 import { MapPage } from "./pages/Map";
 import { ShopList } from "./components/ShopList";
+import Checkout from "./pages/Checkout";
 
 function App() {
   return (
@@ -26,17 +27,18 @@ function App() {
   );
 }
 function AppContent() {
-  const { view, role, isLogedIn, stop, route, setView } = useView();
+  const { view, role, isLogedIn, stop, route, setView,cart } = useView();
   
   const bgImage = (view === "welcomePage" || !view) ? "/img/background.png" : null;
 
   // routine for checking if user has specified route
   const withRoute = (Component) => {
     if(!route){
-    return <UserDashboard />;
+    return <UserDashboard showAlert={true}/>;
     } 
     return Component;
   } 
+
 
   const renderContent = () => {
     // 1. Logic for Dashboard/Welcome 
@@ -63,6 +65,7 @@ function AppContent() {
       openShop: withRoute(<Shop />),
       cart: withRoute(<Cart />),
       shopList: withRoute(<ShopList />),
+      checkout:withRoute(<Checkout/>),
       manual: (
         <Box 
           component="img" 

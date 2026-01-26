@@ -2,10 +2,11 @@ import { Container, Box, Typography, Card, CardActionArea, CardContent, CardMedi
 import { shops } from './MenuData';
 import { useView } from './ViewContext';
 export const ShopList = ({ onSelectShop }) => {
-    const {setView}= useView();
+    const {setView,stop}= useView();
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
       <Typography variant="h4" fontWeight="bold" mb={3}>Συνεργαζόμενα Καταστήματα</Typography>
+      <Typography variant="h8" fontWeight="bold" mb={3}>Παραλαβή απο την στάση {stop}</Typography>
       {shops.map((shop) => (
         <Card key={shop.id} sx={{ mb: 2, borderRadius: 3, boxShadow: 2 }}
         onClick={() =>setView("openShop")}
