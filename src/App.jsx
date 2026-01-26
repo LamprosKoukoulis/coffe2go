@@ -6,16 +6,17 @@ import SignUp from "./pages/SignUp";
 import UserDashboard from "./pages/UserDashboard";
 import DriverDashboard from "./pages/DriverDashBoard"
 import Footer from "./components/Footer"
-import Cart from "./pages/Cart"
+import Cart from "./pages/Cart";
 import Robot from "./pages/Robot"
 // import UserDashboard from "./pages/UserDashboard";
 // import DriverDashboard from "./pages/DriverDashBoard"
 import { useView, ViewProvider } from "./components/ViewContext";
 import { Box } from "@mui/material";
-import CoffeeOrder from "./components/CoffeeOrder";
 import View from "./pages/view";
 import ClimateControl from "./pages/ClimateContol";
 import EnergyPanel from "./pages/EnergyPanel";
+import Shop from "./pages/Store";
+import { useState } from "react";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
 }
 function AppContent(){
   const {view, role, isLogedIn, stop} = useView();
+  
   const bgImage = (view === "welcomePage" || !view) ? "/img/background.png" : null;
   console.log("App is trying to render view: ", view) 
   const renderContent = () => {
@@ -63,12 +65,10 @@ function AppContent(){
         case "openShop":
           if(isLogedIn){
             return(
-              <CoffeeOrder />
+              <Shop />
             )
           }
         case "cart":
-          if(role!="driver" & !isLogedIn)
-            return <Container> Unathorized Role</Container>;
             return(
             <Cart />
           )
