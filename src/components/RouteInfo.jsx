@@ -1,11 +1,11 @@
 import { Paper, Typography, List, ListItem, Button } from "@mui/material";
 import { useView } from "./ViewContext";
 
-export default function RouteInfo({ route }) {
+export default function RouteInfo() {
   let nextStopFound =false;
   let color ="error";
   let isClickable =false;
-  const {setStop,setView} = useView();
+  const {route,setStop,setView} = useView();
   return (
     <Paper sx={{ p: 3, mb: 3 }}>
       <Typography variant="h6">{route.routeName}</Typography>
@@ -35,7 +35,7 @@ export default function RouteInfo({ route }) {
                 justifyContent:"flex-start",
                 textTransform: "none",
               }}
-              onClick={() => {setView("openShop"),setStop(stop), console.log("Clicked stop:",stop)
+              onClick={() => {setView("shopList"),setStop(stop), console.log("Clicked stop:",stop)
               }}
               >
                 {stop}

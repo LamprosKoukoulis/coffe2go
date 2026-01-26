@@ -9,14 +9,32 @@ export const ViewProvider = ({children}) =>{
     const [isLogedIn, setIsLogedIn] = useState(false);
     const [stop,setStop]= useState(null);
     const [cart,setCart] =useState([]);
+    const [route, setRoute] =useState(null);
 
     const addToCart=(orderItem) =>{
         setCart((prevCart) => [...prevCart, orderItem]);
         console.table(orderItem)
     };
 
+    const resetAll=() =>{
+        setRole("guest");
+        setView("welcomePage");
+        isLogedIn(false);
+        setStop(null);
+        setCart([]);
+        setRoute(null);
+    };
+
     return(
-        <ViewContext.Provider value={{ view, setView, role, setRole,isLogedIn,setIsLogedIn,stop,setStop,cart,setCart,addToCart}}>
+        <ViewContext.Provider 
+        value={{view, setView,
+                role, setRole,
+                isLogedIn,setIsLogedIn,
+                stop,setStop,
+                cart,setCart,addToCart,
+                route, setRoute,
+                resetAll
+                }}>
             {children}
         </ViewContext.Provider>
     )

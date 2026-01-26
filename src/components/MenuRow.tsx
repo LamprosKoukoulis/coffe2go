@@ -22,7 +22,7 @@ export const MenuRow = ({item, addToCart }: Props) => {
           px: 1, 
           borderBottom: '1px solid #eee',
           cursor: 'pointer',
-          '&:hover': { bgcolor: '#fafafa' } 
+          '&:hover': { bgcolor: 'primary.main' } 
         }}
       >
         <Avatar 

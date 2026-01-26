@@ -23,16 +23,22 @@ function Shop() {
     <Container maxWidth="sm" sx={{ mt: 4, mb: 10 }}>
       {view === "openShop" ? (
         <>
-      <Typography variant="h4" align="center" sx={{ fontWeight: 'bold', mb: 4 }}>
+      <Typography variant="h4" align="center" sx={{ fontWeight:540, mb: 3 }}>
         MENU
       </Typography>
 
       {categories.map((cat) => (
-        <Box key={cat.id} sx={{ mb: 6 }}>
-          <Typography variant="h5" sx={{ 
-            fontWeight: 'bold', mb: 2, pb: 1, 
-            borderBottom: '2px solid #000',
-            position: 'sticky', top: 0, bgcolor: 'white', zIndex: 10
+        <Box key={cat.id} sx={{ mb: 6, boxShadow:"0px 4px 10px rgba(0,0,0,0.05)" }}>
+          <Typography variant="h5" color="text.primary" sx={{ 
+            fontWeight: 'bold', 
+            mb: 2,p: 1.5,borderRadius: '8px',          
+            display: 'block',
+            backgroundColor: 'background.main',
+            color: 'text.primary',          
+            position: 'sticky',
+            top: 0, 
+            zIndex: 10,
+            boxShadow: '0px 4px 10px rgba(0,0,0,0.1)'
           }}>
             {cat.label}
           </Typography>

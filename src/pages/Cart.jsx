@@ -60,7 +60,7 @@ export default function Cart() {
           </Paper>
 
           {/* Total and Checkout */}
-          <Box sx={{ mt: 4, p: 2, bgcolor: '#f9f9f9', borderRadius: 2 }}>
+          <Box sx={{ mt: 4, p: 2, bgcolor: 'background.default', borderRadius: 2 }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
               <Typography variant="h6" sx={{ fontWeight: 'bold' }}>Σύνολο</Typography>
               <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{totalPrice.toFixed(2)}€</Typography>

@@ -7,11 +7,12 @@ import {
 } from "@mui/material";
 import { useView } from "./ViewContext";
 import ColorModeSelect from "../theme/ColorModeSelect";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 export default function Header() {
   const menus = {
-    guest: [],
+    guest: [,],
     user: [{label: "View", view:"view"},
            {label: "Sightseeings", view:"sightseeings"},
            {label: "Order Coffee", view:"dashboard"},
@@ -25,7 +26,7 @@ export default function Header() {
     ],
   };
   
-  const {setRole,role ,setView,setIsLogedIn} = useView();
+  const {setRole,role ,setView,setIsLogedIn,resetAll} = useView();
   const links = menus[role] || menus.guest;
 
   return (
@@ -35,7 +36,7 @@ export default function Header() {
         <Button 
         variant="text"
         color= "inherit"
-        onClick={() => setView("welcomePage")}
+        onClick={() => setView("dashboard")}
         sx={{
           textTransform:"none",
         }}>
@@ -54,11 +55,21 @@ export default function Header() {
               {label}
             </Button>
           ))}
+
+            <Button
+            variant="outlined"
+            color="inherit"
+            sx={{ ml: "5px", textTransform: "none" }}
+            onClick={() => setView("cart")}
+            >
+              <ShoppingCartIcon/>
+            </Button>
+
           {role === "guest" && (
             <Button
             variant="outlined"
             color="inherit"
-            sx={{ ml: 2, textTransform: "none" }}
+            sx={{ ml: "5px", textTransform: "none" }}
             onClick={() => setView("signin")}
             >
               Sign In
@@ -68,15 +79,25 @@ export default function Header() {
           <Button
             variant ="outlined"
             color = "inherit"
+            sx={{ ml: "5px", textTransform: "none" }}
             onClick={() =>{
               setRole("guest");
               setIsLogedIn(false);
               setView("welcomePage");
+              resetAll();
             }}
             >
               Sign Out
             </Button>
           )}
+          <Button
+            variant="outlined"
+            color = "inherit"
+            sx={{ml:"5px",
+            }}
+            onClick={()=> setView("manual")}>
+          manual
+          </Button>
         <ColorModeSelect />
         </Box>
       </Toolbar>

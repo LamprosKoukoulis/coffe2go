@@ -1,8 +1,10 @@
 import { Paper, Typography, Button } from "@mui/material";
+import { useView } from "./ViewContext";
 
 export default function QRScanCard({ onScan }) {
-  const mockScan = () => {
-    onScan({
+  const {setRoute} =useView();
+  const mockScan=() => {
+    setRoute({
       busId: "040",
       routeName: "Piraeus → Syntagma",
       stops: ["ΒΕΝΙΖΕΛΟΥ",

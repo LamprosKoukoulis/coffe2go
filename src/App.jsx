@@ -8,16 +8,15 @@ import DriverDashboard from "./pages/DriverDashBoard"
 import Footer from "./components/Footer"
 import Cart from "./pages/Cart";
 import Robot from "./pages/Robot"
-// import UserDashboard from "./pages/UserDashboard";
-// import DriverDashboard from "./pages/DriverDashBoard"
 import { useView, ViewProvider } from "./components/ViewContext";
 import { Box } from "@mui/material";
 import View from "./pages/view";
 import ClimateControl from "./pages/ClimateContol";
 import EnergyPanel from "./pages/EnergyPanel";
-import Shop from "./pages/Store";
-import { useState } from "react";
-
+import Shop from "./pages/Shop";
+import manual from "/manual/manual.svg?url";
+import { MapPage } from "./pages/Map";
+import { ShopList } from "./components/ShopList";
 
 function App() {
   return (
@@ -26,78 +25,70 @@ function App() {
     </ViewProvider>
   );
 }
-function AppContent(){
-  const {view, role, isLogedIn, stop} = useView();
+function AppContent() {
+  const { view, role, isLogedIn, stop, route, setView } = useView();
   
   const bgImage = (view === "welcomePage" || !view) ? "/img/background.png" : null;
-  console.log("App is trying to render view: ", view) 
+
+  // routine for checking if user has specified route
+  const withRoute = (Component) => {
+    if(!route){
+    return <UserDashboard />;
+    } 
+    return Component;
+  } 
+
   const renderContent = () => {
-    switch (view) {
-      case "signin":
-        return <SignIn />;
-        case "signup":
-          return <SignUp />;
-        case "dashboard":
-          if(isLogedIn){
-            console.log("IsLogedIn TRUE") 
-            switch(role){
-              case "user":
-                return (  
-                    <UserDashboard />
-                  );
-              case "driver":
-                return(
-                  <DriverDashboard />
-              );
-              default:
-                return(
-                  <WelcomePage isLogedIn/>
-              );
-            }
-          }else{
-              return <Container> Unathorized Role</Container>;
-            // return < Dashboard />
-          }
-        case "view":
-          return(
-            <View />
-          )
-        case "openShop":
-          if(isLogedIn){
-            return(
-              <Shop />
-            )
-          }
-        case "cart":
-            return(
-            <Cart />
-          )
-        case "ac":
-          return(
-            <ClimateControl />
-          )
-        case "solar":
-          return(
-            <EnergyPanel />
-          )
-        case "robot":
-          return(
-            <Robot />
-          )
-        case "welcomePage":
-          default:
-            return(
-                <WelcomePage isLogedIn/>
-            )
-          
+    // 1. Logic for Dashboard/Welcome 
+    if (view === "dashboard") {
+        if (isLogedIn && role === "driver"){
+          return <DriverDashboard />;
+        } else if(role=== "user"|| role==="guest"){
+          return <UserDashboard />;
+        }
+      } else if(view === "welcomePage"){
+      return <WelcomePage />;
     }
+
+    // 2. Mapping for all other views
+    const viewMap = {
+      signin: <SignIn />,
+      signup: <SignUp />,
+      ac: <ClimateControl />,
+      solar: <EnergyPanel />,
+      robot: <Robot />,
+ 
+      view: withRoute(<View />),
+      sightseeings: withRoute(<MapPage />),
+      openShop: withRoute(<Shop />),
+      cart: withRoute(<Cart />),
+      shopList: withRoute(<ShopList />),
+      manual: (
+        <Box 
+          component="img" 
+          src={manual} 
+          alt="Manual" 
+          onContextMenu={(e) => e.preventDefault()}
+          sx={{ 
+            maxWidth: '650px',
+            width: '100%', 
+            height: 'auto', 
+            p: '30px', 
+            pointerEvents: 'none', 
+            userSelect: 'none' }} 
+        />
+      )
+    };
+
+    return viewMap[view] || <WelcomePage isLogedIn={isLogedIn} />;
   };
-  return(
-    <Box sx={{display:"flex", flexDirection:"column", minHeight:"100vh"}}>
+
+  return (
+    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <Header />
-        <Container backgroundImage={bgImage}>
-          {renderContent()}
-        </Container>
+      <Container backgroundImage={bgImage}>
+        {renderContent()}
+      </Container>
       <Footer />
     </Box>
   );
