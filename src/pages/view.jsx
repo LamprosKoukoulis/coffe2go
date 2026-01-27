@@ -50,20 +50,18 @@ export default function View() {
         }}
         >
             <Box sx={{ position: "relative", width: "80%", height: "auto" }}>
-                
-                <video
-                ref={videoRef}
-                src="/videos/route-view.mp4"
-                preload="auto"
-                autoPlay
-                playsInline
-                controls={false}
-                loop
-                style={{
-                    width: "100%",
-                    display: "block",
-                    borderRadius: "8px",
-                }}/>
+              
+                <iframe width="1365" 
+                height="768"
+                 src="https://www.youtube.com/embed/X2gSRq-4PIU?start=219&autoplay=1&mute=1&modestbranding=1&showinfo=0&controls=0&rel=0&fs=0"
+                  title=""
+                  style={{
+                    pointerEvents:"none",
+                  }}
+                   frameborder="0"
+                    allow="autoplay; encrypted-media;" 
+                    referrerpolicy="strict-origin-when-cross-origin">
+                </iframe>
 
                 <Typography
                 sx={{
@@ -78,7 +76,7 @@ export default function View() {
                     fontWeight: "medium",
                     pointerEvents: "none",
                     whiteSpace: "nowrap",
-                }}>
+                  }}>
                 {now.toLocaleDateString("el-GR")} | {now.toLocaleTimeString("el-GR")}
                 </Typography>
             </Box>
